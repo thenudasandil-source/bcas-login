@@ -1,11 +1,20 @@
 import streamlit as st
-import webbrowser
+
 st.title("BCAS Login System")
-adminpass=st.text_input("password")
-st.write(adminpass)
-if adminpass=="bc123":
-    webbrowser.open_new_tab("https://smart-class.streamlit.app/")
-if adminpass==None:
-    st.write("Please enter your password.")
-else:
-    st.error("Please enter a valid password.")
+
+# පාස්වර්ඩ් එක ටයිප් කරනකොට තරු (*) විදිහට පේන්න type="password" දාන්න
+adminpass = st.text_input("Password", type="password")
+
+if st.button("Login"):
+  if adminpass == "bc123":
+    st.success("✅ Login Successful! Click below to open the app:")
+    # යූසර්ට ක්ලික් කරලා අර ඇප් එකට යන්න ලස්සන බටන් එකක් දෙනවා
+    st.link_button(
+        "🚀 Open Smart Class App", "https://smart-class.streamlit.app/"
+    )
+
+  elif adminpass == "":
+    st.warning("⚠️ Please enter your password.")
+
+  else:
+    st.error("❌ Invalid Password. Please try again.")
